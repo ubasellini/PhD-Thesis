@@ -1,0 +1,145 @@
+\documentclass[11pt, a4paper, twoside]{report}
+
+\usepackage[left = 2.5cm, right = 2.5cm, top = 2.5cm, bottom = 2.5cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[justification = justified, labelfont = bf, font = small, textfont = normalfont]{caption}
+\usepackage[final]{pdfpages}
+\usepackage[all]{nowidow}
+\usepackage[bottom]{footmisc} % place footnotes at the bottom of the page
+\usepackage[flushleft]{threeparttable}
+\usepackage[misc,geometry]{ifsym} % Letter symbol
+\usepackage[parfill]{parskip}
+\usepackage[T1]{fontenc}
+
+\usepackage{natbib}   %% Citations and references
+\usepackage[autostyle, english = american]{csquotes}
+\usepackage[english]{babel}
+\MakeOuterQuote{"}
+
+\usepackage{amsmath}   %% Better math support
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{array}
+\usepackage{afterpage}
+\usepackage{authblk}
+\usepackage{breakcites}
+\usepackage{booktabs}
+\usepackage{bm}			%% Bold math 
+\usepackage{colortbl}   %% Row colors in Tables
+\usepackage{enumitem}   %% Specify label in enumerate
+\usepackage{float}      %% Positioning
+\usepackage{hhline}		%% for TABLE
+\usepackage{longtable}
+\usepackage{lscape}		%% for landscape
+\usepackage{graphicx}   %% Allows including images
+\usepackage{makecell}   %% For Tables
+\usepackage{mathtools}  %% Loads amsmath
+\usepackage{MnSymbol}	%% Symbols for matrices
+\usepackage{multirow}
+\usepackage{ragged2e}   %% Justify text in chapters
+\usepackage{scrextend}  %% create lists \begin{labeling}
+\usepackage{setspace}
+\usepackage{subfiles}
+\usepackage{subcaption}
+\usepackage{titleps}    %% Fancy page style
+\usepackage{tocloft}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage{hyperref}   %% Create links - references
+\definecolor{mycol}{RGB}{8, 29, 88}
+\definecolor{my-grey}{RGB}{220,220,220}    %% For Tables
+\definecolor{my-white}{RGB}{255,255,255}   %% For Tables
+\definecolor{pagecolor}{RGB}{87, 160, 211}  %% Carolina for page colors
+\hypersetup{
+  pdffitwindow = false,     % window fit to page when opened
+  pdfstartview = {Fit},     % fits the width of the page to the window
+  pdfnewwindow = true,      % links in new window
+  colorlinks = true,        % false: boxed links; true: colored links
+  linkcolor  = mycol,       % color of internal links 
+  citecolor  = blue,        % color of links to bibliography
+  filecolor  = blue,        % color of file links
+  urlcolor   = blue         % color of external links
+}
+\addtokomafont{labelinglabel}{\bfseries}
+
+\makeatletter
+\patchcmd{\@makechapterhead}{\vspace*{50\p@}}{}{}{}% Removes space above \chapter head
+\patchcmd{\@makeschapterhead}{\vspace*{50\p@}}{}{}{}% Removes space above \chapter* head
+\makeatother
+
+\renewcommand{\baselinestretch}{1.5}
+\renewcommand\theContinuedFloat{\alph{ContinuedFloat}}
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+
+\newcolumntype{C}[1]{>{\centering\arraybackslash}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}  %% special columns
+\newcommand*{\belowrulesepcolor}[1]{%
+	\noalign{%
+		\kern-\belowrulesep
+		\begingroup
+		\color{#1}%
+		\hrule height\belowrulesep
+		\endgroup
+	}%
+}
+
+%% MATRIX D
+\usepackage{tabularx}
+
+\newcolumntype{M}[1]{>{\hbox to #1\bgroup\hss$}l<{$\egroup}}
+
+\makeatletter
+\newcommand\@brcolwidth{0.67em}
+\newenvironment{brmatrix}{%
+	\left[%
+	\hskip-\arraycolsep
+	\new@ifnextchar[\@brarray{\@brarray[\@brcolwidth]}%
+}{%
+	\endarray
+	\hskip -\arraycolsep
+	\right]%
+}
+\def\@brarray[#1]{\array{r*\c@MaxMatrixCols {M{#1}}}}
+\makeatother
+
+%% for underbrace in matrix D
+\usepackage{tikz}
+\usetikzlibrary{decorations.pathreplacing}
+\newcommand{\tikzmark}[1]{\tikz[overlay,remember picture,baseline=(#1.base)]
+	\node (#1) {\strut};}
+
+%% PARAGRAPHS
+\setlength{\parskip}{0em}
+\setlength\parindent{20pt}  %% indent for new paragraphs
+
+%% PAGESTYLE
+\newpagestyle{mypagestyle}{%
+	\setheadrule{1pt}
+	\headrule%]
+	\sethead[\thepage][\slshape\thechapter.\enspace\chaptertitle][]{}{\slshape\thechapter.\enspace\chaptertitle}{\thepage}
+	\setfoot{}{}{}}
+
+\newpagestyle{mypagestyleBIB}{%
+	\setheadrule{1pt}
+	\headrule%]
+	\sethead[\thepage][\slshape\enspace\chaptertitle][]{}{\slshape\enspace\chaptertitle}{\thepage}
+	\setfoot{}{}{}}
+
+% ---------------------------------------------------------------------------
+\begin{document}
+
+\onehalfspace
+\graphicspath{{./figures/}}
+\subfile{Ch0}\clearpage % Title, summary, acknowledgements, notations etc
+\pagestyle{mypagestyle}
+\subfile{Ch1}  	     %% Introduction
+\subfile{Ch2}        %% LS
+\subfile{Ch3}   	 %% STAD
+\subfile{Ch4}        %% 3C-STAD
+\subfile{Ch5}  		 %% C-STAD
+\subfile{Ch6}  		 %% 3C-sLC
+\subfile{Ch7}  		 %% Biblio
+
+\end{document}
+

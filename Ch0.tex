@@ -1,0 +1,228 @@
+\documentclass[Thesis]{subfiles} 
+
+\begin{document}
+
+% -------------------------------------------------------------
+%% TITLE PAGE
+\pagenumbering{roman}  %% roman pages before Chapter 1 
+\begin{titlepage}
+	\thispagestyle{empty}  %% count first page as i
+	\begin{center}
+		{\quad\par\vspace{0.5cm}}
+		{\Huge \textbf{New Approaches in Mortality \\ \medskip Modelling and Forecasting}}
+		\vspace{2cm}\\
+		{\textit{\Large A dissertation submitted in partial fulfilment of the requirements \\ for the degree of Doctor of Philosophy}}
+		\vspace{1.75cm}\\
+		{\Large by \\ 
+		\vspace{0.75cm} \huge \textbf{Ugofilippo Basellini}}
+		\vspace{2cm}\\
+		\includegraphics[width=0.75\textwidth]{./Ch0/logo-banner}
+		\vspace{2.0cm}\\
+		\vfill
+		\singlespacing
+		\large
+		University of Southern Denmark\\
+		Faculty of Health Sciences\\
+		Institute of Public Health\\
+		Interdisciplinary Centre on Population Dynamics\\
+		\vspace{1cm}
+		Odense, Denmark\\
+		February 2020
+	\end{center}
+\end{titlepage}
+
+% -------------------------------------------------------------
+%% ACADEMIC ADVISORS AND COMMITTEE
+\thispagestyle{empty}
+\normalsize 
+\singlespacing 
+\noindent \textbf{\Large Academic Advisors}
+\vspace{0.5cm}\\
+Dr.~\textbf{Carlo Giovanni Camarda}, Ph.D.\\
+Mortality, Health and Epidemiology Unit\\
+Institut national d'\'{e}tudes d\'emographiques
+\vspace{0.4cm}\\
+Associate Professor \textbf{James Oeppen}, M.A.\\
+Interdisciplinary Centre on Population Dynamics\\
+Faculty of Business and Social Sciences\\
+University of Southern Denmark
+\vspace{0.4cm}\\
+Associate Professor \textbf{Vladimir Canudas-Romo}, Ph.D.\\
+School of Demography\\
+Australian National University, Canberra, Australia
+\vspace{0.4cm}\\
+Professor \textbf{Annette Baudisch}, Ph.D.\\
+Interdisciplinary Centre on Population Dynamics\\
+Faculty of Business and Social Sciences\\
+University of Southern Denmark\\
+\vspace{2.5cm}\\ 
+\vfill
+\noindent \textbf{\Large Assessment Committee}
+\vspace{0.5cm}\\ 
+Associate Professor \textbf{Fanny Janssen}, Ph.D.\\
+Department of Demography\\
+Faculty of Spatial Sciences\\
+University of Groningen
+\vspace{0.4cm}\\
+Dr.~\textbf{Iain D. Currie}, Ph.D.\\
+Department of Actuarial Mathematics and Statistics\\
+School of Mathematical and Computer Sciences\\
+Heriot-Watt University
+\vspace{0.4cm}\\
+Professor \textbf{Mauro Laudicella}, Ph.D. (chair)\\
+Department of Public Health\\
+Faculty of Health Sciences\\
+University of Southern Denmark, Denmark
+
+% -------------------------------------------------------------
+%% TOC
+\newpage
+\doublespacing
+\addtocontents{toc}{\protect\setstretch{1.15}}
+\tableofcontents
+
+\cleardoublepage
+% -------------------------------------------------------------
+
+% -------------------------------------------------------------
+\chapter*{Acknowledgements}
+\addcontentsline{toc}{chapter}{Acknowledgements}
+This dissertation has been developed and written during my three-year appointment as a joint Ph.D.~student at the Institut national d'\'{e}tudes d\'emographiques (INED) and at the Interdisciplinary Centre on Population Dynamics (CPop) in the Department of Public Health of the University of Southern Denmark.
+
+Writing a Ph.D.~thesis is a significant challenge that I surely would have not completed if it wasn't for the extraordinary people that have accompanied me along the journey. First of all, I want to thank all the friends that I have had the luck of meeting during my life. Friends from the Junior Tennis Club, Liceo Scientifico Severi, Universit\`{a} Bocconi, CPop (and former MaxO), MaxNetAging Research School, the European Doctoral School of Demography and INED: I have been blessed to meet and spend part of my life with you. Among so many, a special thanks is in order to my best friends, Alessandro and Matteo: you have taught me the real definition of friendship, and I am grateful for having you in my life.
+
+Moreover, I wish to thank my mentors and supervisors that have shared their wisdom and knowledge with me. Your teachings, academics and not, have made me the man I am today, and I will always remember what you have done for me. Finding the right path after the graduate studies can be very hard, and I believe there exists no one who can be so genuinely kind, supportive and always ready to help as Marco Bonetti. Thank you for being there for me, with your unlimited enthusiasm, so many times. The first work experiences can also be significant challenges in someone's life, unless your team director is Tim Crayford: I have never felt more valued than during the years spent together at Just Retirement. Your exceptionally high opinion of me has pushed me to work harder, and you have taught me how to work with others. Next, Ph.D.~supervisors are sometimes, and unfortunately, known for complicating a doctoral student's path. Giancarlo Camarda, you have definitely gone too much in the other direction: your constant guidance, help, support and kindness made my Ph.D.~such an enjoyable and unforgettable journey. Since I am your first doctoral student, I can tell you something you haven't heard before: you couldn't have been a better supervisor than this. Last, but not least, I extend my deepest gratitude to all the other mentors that have helped me during these last few years: Vladimir Canudas-Romo, Jim Oeppen, Annette Baudish and Jim Vaupel.
+
+Finally, the most special thanks are reserved to my family. To my parents Elena and Aldo: I will be forever thankful to you for raising me and Carlo in the most exceptional manner; for always being there and making us feeling loved in each moment of our lives. Thank you especially for being supportive of each of my own choices, even those that put some physical distance between us. To my brother Carlo: the countless hours spent playing together during our childhood are my absolute favourite memories. You are a truly special brother and surely one of my best friends. To my grandparents Michela and Gustavo: thank you for all your love and support during my life, you have done so much for our family. Lastly, a very special thanks to Mar\'{i}lia: your everyday kindness and love stimulate me to be a better man. I am extremely lucky to have you at my side: with you, life is so much more beautiful. 
+
+\newpage
+
+% -------------------------------------------------------------
+\chapter*{English summary}
+\addcontentsline{toc}{chapter}{English summary}
+\vspace{-0.5cm}
+
+Mortality modelling and forecasting are deeply rooted in demographic and actuarial sciences. Models to describe mortality patterns over age and time have long been used and developed since John Graunt (\citeyear{graunt1662natural}) introduced one of the first models of mortality, the life table. Forecasts of mortality have also been produced for many years: the first examples trace back to the beginning of the twentieth century, when English actuaries started to measure the financial burden of unanticipated longevity improvements on insurance and pension providers' reserves.  
+
+Today, the study of human mortality still occupies a central role in demographic and actuarial analyses. Most of the attention received by this area of research has been stimulated by two pressing challenges faced by modern societies: population ageing and longevity risk. According to the latest World Population Prospects, virtually every country of the world is experiencing growth in the number and proportion of older persons, resulting from continuous mortality and fertility declines \citep{United2019wpp}. Furthermore, the demographic transition has been impacting both public and private pension systems, whose retirement liabilities lie between \$60 and \$80 trillions in developed economies due to unexpected mortality improvements \citep{michaelson2014strategy}. Funding public policies and retirement products for the elderly becomes increasingly difficult as working-age populations shrink and dependency ratios increase worldwide.   
+
+The enormous size of unexpected public and private retirement liabilities is the result of overly conservative forecasts of mortality during most recent decades. Despite the great advances in the field of mortality forecasting, including the shift from deterministic to stochastic approaches, currently and widely used methods have repeatedly failed to anticipate the sustained rate of mortality improvements observed in many low-mortality countries. The need for novel models that can predict longevity improvements more accurately than established methodologies is evident and timely. Therefore, this dissertation aims to bring new insights to the analysis and forecasting of human mortality by introducing novel statistical methods that offer different perspectives on mortality developments. 
+
+This dissertation comprises six chapters, five of which are studies that have been devised to address this goal. Each study takes the form of a research manuscript, which has been published or submitted to scientific journals; furthermore, routines for reproducing the results presented in the thesis have been made publicly available. The first chapter introduces the basic notions and measures employed in the study of human mortality, reviews the main contributions in the history of modelling and forecasting mortality, and provides a short overview of the five studies developed in the thesis. In Chapter \ref{Ch2}, we illustrate a general framework for modelling adult mortality that reconciles the well-known laws of mortality into a single flexible family. Re-parameterizing mortality models in terms of the proposed location--scale family has two important advantages: the model's parameters have a direct demographic interpretation, and their estimation is more precise due to their lower correlation. 
+
+From the third to the fifth chapters, the attention is shifted from mortality rates to age-at-death distributions as an alternative, yet informative (and neglected), function for modelling and forecasting human mortality. Chapter \ref{Ch3} proposes a relational approach to model and forecast adult mortality by transforming the age-axis of a standard distribution of deaths. The proposed Segmented Transformation Age-at-death Distributions (STAD) model successfully captures mortality developments over age and time, and its forecasts are more accurate and optimistic than those obtained with the seminal Lee-Carter (LC) model \citep{lee1992modeling} and its extensions. The STAD model is further employed and generalized in the following two chapters. In Chapter \ref{Ch4}, the methodology is extended to the entire age-range. The age-pattern of mortality is first smoothly decomposed into three independent components that operate upon childhood, middle and old ages \cite[as originally proposed by][]{thiele1871mathematical}. The three components are then modelled and forecast with specialized versions of the STAD model. The resulting forecasts are shown to be more accurate and optimistic than those of traditional and well-established models. Chapter \ref{Ch5} presents a generalization and application of the STAD methodology for modelling and forecasting cohort mortality data. Models developed to forecast cohort data are very scarce in the literature, and our proposed approach allows us to precisely complete the mortality experience of partially observed cohorts. Finally, Chapter \ref{Ch6} proposes a new extension of the influential LC model that overcomes some of its known drawbacks.  Working in a penalized composite link framework, we simultaneously smooth and decompose the mortality pattern into three independent components, which are modelled, estimated and forecast within an LC smooth framework. Fitted and forecast mortality profiles do not show the jaggedness typically displayed by the LC model; furthermore, mortality rates can vary more flexibly across age and time, as they result from a combination of three component-specific schedules of mortality changes.
+
+% -------------------------------------------------------------
+\chapter*{Danish summary}
+\addcontentsline{toc}{chapter}{Danish summary}
+\vspace{-0.5cm}
+
+D{\o}delighedsmodellering og -prognoser er dybt forankret i demografiske og aktuariske videnskaber. Modeller til at beskrive d{\o}delighedsm{\o}nstre over alder og tid er l{\ae}nge blevet brugt og udviklet, siden John Graunt (\citeyear{graunt1662natural}) introducerede en af de f{\o}rste modeller for d{\o}delighed, d{\o}delighedstavlen. Prognoser for d{\o}delighed er blevet udarbejdet igennem mange {\aa}r: De f{\o}rste eksempler kan spores tilbage til begyndelsen af det tyvende {\aa}rhundrede, hvor engelske aktuarer begyndte at måle den {\o}konomiske byrde ved uventede forbedringer af levetiden på forsikrings- og pensionsudbyderes reserver.
+
+I dag indtager analysen af d{\o}delighed for mennesker en central rolle i demografiske og aktuariske analyser. Det meste af opm{\ae}rksomheden, som dette forskningsområde f{\aa}r, kommer fra to presserende udfordringer det moderne samfund st{\aa}r over for: aldring af befolkningen og levetidsrisiko. I henhold til de seneste verdensbefolkningsprognoser vil praktisk talt alle lande i verden opleve v{\ae}kst i antallet og andelen af {\ae}ldre, som f{\o}lge af kontinuerlige stigninger i den forventede levealder og forringet fertilitet \citep{United2019wpp}. Den demografiske transition har indflydelse p{\aa} b{\aa}de offentlige og private pensionssystemer i udviklede {\o}konomier, hvis pensionsforpligtelser, p{\aa} grund af uventede forbedringer i d{\o}deligheden, ligger mellem 60 og 80 billioner dollars \citep{michaelson2014strategy}. Finansiering af offentlige aktiviteter og pensionsprodukter til {\ae}ldre bliver stadig vanskeligere, n{\aa}r befolkningsandelen i den erhvervsaktive alder falder og fors{\o}gerkvoten stiger over hele verden.
+
+De enorme uventede offentlige og private pensionsforpligtelser er resultatet af for konservative prognoser for d{\o}delighed i de seneste {\aa}rtier. P{\aa} trods af mange store fremskridt inden for d{\o}delighedsprognoser, herunder skiftet fra en deterministisk til en stokastisk tilgang, har nuv{\ae}rende og bredt anvendte metoder gentagne gange undladt at forudse de konstante forbedringer i d{\o}deligheden, som er observeret i mange lande med lav d{\o}delighed. Behovet for nye modeller, der kan forudsige forbedringer af levetiden mere n{\o}jagtigt end etablerede metoder er indlysende og p{\aa}kr{\ae}vet. Derfor har denne afhandling til form{\aa}l at bringe ny viden til analysen og forudsigelsen af menneskelig d{\o}delighed ved at introducere nye statistiske metoder, der tilbyder forskellige perspektiver p{\aa} d{\o}delighedsudviklingen.
+
+Denne afhandling best{\aa}r af seks kapitler, hvoraf fem er analyser, er udf{\o}rt til at n{\aa} dette m{\aa}l. Hver analyse har form af et forskningsmanuskript, der er blevet offentliggjort eller sendt til videnskabelige tidsskrifter; endvidere er metoderne til at replicere resultaterne, der er pr{\ae}senteret i afhandlingen, gjort offentligt tilg{\ae}ngelige. Det første kapitel introducerer de grundlæggende forestillinger og m{\aa}l, der er anvendt i studiet af menneskelig d{\o}delighed, gennemg{\aa}r de vigtigste bidrag i historien om modellering og forudsigelse af d{\o}delighed og giver en kort oversigt over de fem studier, der er udf{\o}rt i afhandlingen. I kapitel \ref{Ch2} illustrerer vi en generel ramme for modellering af d{\o}delighed for voksne, der forener velkendte d{\o}delighedslove i en enkelt fleksibel familie. Re-parametrisering af d{\o}delighedsmodeller med hensyn til den foresl{\aa}ede location-scale familie har to vigtige fordele: Modellens parametre har en direkte demografisk fortolkning, og deres estimering er mere pr{\ae}cis p{\aa} grund af deres lavere korrelation.
+
+Fra tredje til femte kapitel flyttes opm{\ae}rksomheden fra d{\o}delighed til fordelingen af d{\o}dsfald som en alternativ, men alligevel informativ (og fors{\o}mt) funktion til modellering og forudsigelse af menneskelig d{\o}delighed. Kapitel \ref{Ch3} foresl{\aa}r en relationel tilgang til at modellere og forudsige d{\o}delighed blandt voksne ved at omdanne aldersaksen for en standardfordeling af d{\o}dsfald. Den foresl{\aa}ede STAD-model modellerer succesfuldt d{\o}delighedsudviklingen over alder og tid, og dens fremskrivninger er mere n{\o}jagtige og optimistiske end dem, der opn{\aa}s med den banebrydende Lee-Carter (LC) model \citep{lee1992modeling} og dennes udvidelser. STAD-modellen anvendes ogs{\aa} og generaliseres i de f{\o}lgende to kapitler. I kapitel \ref{Ch4} udvides modellen til at inkluderer alle aldre. Aldersm{\o}nsteret p{\aa} d{\o}delighed er f{\o}rst dekomponeret i tre glatte og uafh{\ae}ngige komponenter, der opererer med barndom, middel-alder og alderdom \cite[oprindeligt foresl{\aa}et af][]{thiele1871mathematical}. De tre komponenter modelleres og fremskrives derefter med specialiserede versioner af STAD-modellen. Prognoser opn{\aa}et med denne STAD-modellen viser sig at v{\ae}re mere n{\o}jagtige og optimistiske end traditionelle og veletablerede modeller. Kapitel \ref{Ch5} pr{\ae}senterer en generalisering og anvendelse af STAD-metodologien til modellering og prognoser af kohorte d{\o}delighedsdata. Modeller, der er udviklet til at forudsige kohortedata, er meget f{\aa} i litteraturen, og vores foresl{\aa}ede fremgangsm{\aa}de giver os mulighed for pr{\ae}cist at fuldf{\o}re livsforl{\o}bet af delvist observerede kohorter. Endelig foreslår kapitel \ref{Ch6} en ny udvidelse af den indflydelsesrige LC-model, der afhj{\ae}lper nogle af dens kendte problemer. Med Penalized Composite Link model nedbryder vi d{\o}delighedsm{\o}nsteret i tre uafh{\ae}ngige komponenter, der er modelleret, estimeret og fremskrevet inden for en glat LC-struktur. Estimerede og fremskrevne d{\o}delighedsprofiler viser ikke den skarphed, der typisk opstår af LC-modellen; endvidere kan d{\o}deligheds{\ae}ndringer variere mere fleksibelt over alder og tid, da de er resultatet af en kombination af tre komponentspecifikke skemaer for mortalitetsforbedringer.
+
+\newpage
+
+% -------------------------------------------------------------
+\chapter*{Publications}
+\addcontentsline{toc}{chapter}{Publications}
+
+\subsection*{Manuscripts included in this dissertation}
+\medskip
+%\singlespacing
+\textbf{Paper I}\\
+Basellini, U., Canudas-Romo, V. and Lenart, A.~(2019). Location--Scale Models in Demography: A Useful Re-parameterization of Mortality Models. \textit{European Journal of Population}, \textbf{35}(4), 645--673. DOI: \href{https://link.springer.com/article/10.1007/s10680-018-9497-x}{10.1007/s10680-018-9497-x}
+\vspace{0.5cm}\\
+\textbf{Paper II}\\
+Basellini, U. and Camarda, C.G.~(2019). Modelling and forecasting adult age-at-death distributions. \textit{Population Studies}, \textbf{73}(1), 119--138. DOI: \href{https://www.tandfonline.com/doi/full/10.1080/00324728.2018.1545918}{10.1080/00324728.2018.1545918}%
+\vspace{0.5cm}\\
+\textbf{Paper III}\\
+Basellini, U. and Camarda, C.G. A Three-component Approach to Model and Forecast Age-at-death Distributions. In Mazzuco, S., and Keilman, N.~(eds.), \textit{Developments in Demographic Forecasting}, Springer. Forthcoming.
+\vspace{0.5cm}\\
+\textbf{Paper IV}\\
+Basellini, U., Kj{\ae}rgaard, S., and Camarda, C.G. An age-at-death distribution approach to forecast cohort mortality. Manuscript under review.
+\vspace{0.5cm}\\
+\textbf{Paper V}\\
+Camarda, C.G., and Basellini, U. Smoothing, decomposing and forecasting mortality rates. Manuscript under review.
+
+\newpage
+\subsection*{Other co-authored works during the PhD, not included in the dissertation}
+\medskip
+%\singlespacing
+%\onehalfspacing
+\textbf{Paper VI}\\
+Bergeron-Boucher, M.P., Kj{\ae}rgaard, S., Pascariu, M., Aburto, J.M., Alvarez, J., Basellini, U., Rizzi, S. and Vaupel, J.W. Alternative forecasts of Danish life expectancy. In Mazzuco, S., and Keilman, N.~(eds.), \textit{Developments in Demographic Forecasting}, Springer. Forthcoming.
+\vspace{0.5cm}\\
+\textbf{Paper VII}\\
+Bonetti, M., Gigliarano, C., and Basellini, U. The Gini concentration index for the study of survival. In Mukhopadhyay, N., and Sengupta, P.P.~(eds.), \textit{Gini: An Edited Volume on the Occasion of Gini Centenary}, New Delhi: Serials. Forthcoming.
+\vspace{0.5cm}\\
+\textbf{Paper VIII}\\
+Sutter, A., Barton, S., Sharma, M.D., Basellini, U., Hosken, D., and Archer, C.R.~(2018). Senescent declines in elite tennis players are similar across the sexes. \textit{Behavioral Ecology}, \textbf{29}(6), 1351--1358. DOI: \href{https://academic.oup.com/beheco/advance-article/doi/10.1093/beheco/ary112/5079311}{10.1093/beheco/ary112}
+\vspace{0.5cm}\\
+\textbf{Paper IX}\\
+Archer, C.R., Basellini, U., Hunt, J., Simpson, S.J., Lee, K.P., and Baudish, A.~(2018). Diet has independent effects on the pace and shape of aging in \textit{Drosophila melanogaster}. \textit{Biogerontology}, \textbf{19}(1), 1--12. DOI: \href{https://link.springer.com/article/10.1007\%2Fs10522-017-9729-1}{10.1007/s10522-017-9729-1}
+\vspace{0.5cm}\\
+\textbf{Paper X}\\
+Riffe, T., Nepomuceno, M., and Basellini, U. Mortality modeling. Manuscript under review as invited chapter for the \textit{Encyclopedia of Gerontology and Population Aging} (eds. D.~Gu and M.E.~Dupre), section Mortality (P.~Gerland).
+\vspace{0.5cm}\\
+\textbf{Paper XI}\\
+Aburto, J.M., Villavicencio, F., Basellini, U., Kj{\ae}rgaard, S., and Vaupel, J.W. Dynamics of life expectancy and lifespan equality. Manuscript under review.
+
+
+\newpage
+
+% -------------------------------------------------------------
+\chapter*{List of abbreviations}
+\addcontentsline{toc}{chapter}{List of abbreviations}
+
+\begin{table}[h]
+	\begin{tabular}{p{2cm}l}
+		3C-sLC & Three-Component smooth Lee-Carter model\\
+		3C-STAD & Three-Component Segmented Transformation Age-at-death Distributions model\\
+		AB & Relative absolute bias\\
+		AFT & Accelerated failure time model\\
+		ARIMA & Autoregressive integrated moving average model\\
+		BIC & Bayesian Information Criterion \\
+		BMS & Booth-Maindonald-Smith model\\
+		BDV & Brouhns-Denuit-Vermunt model\\
+		C-STAD & Cohort Segmented Transformation Age-at-death Distributions model\\
+		CLM & Composite Link Model\\
+		CODA & Compositional Data Analysis\\
+		DSS & Dawid-Sebastiani score\\
+		ECP & Empirical coverage probability\\
+		ED & Effective dimension\\
+		GG & Gamma-Gompertz model\\
+		GLM & Generalized Linear Model\\
+		IWLS & Iterative re-Weighted Least Squares algorithm \\
+		LC & Lee-Carter model\\
+		LLS & Log--location--scale family of models\\
+		LM & Lee-Miller model\\
+		LS & Location--scale family of models\\
+		HMD & Human Mortality Database\\
+		HU & Hyndman-Ullah model\\
+		HUrob & Robust Hyndman-Ullah model\\
+		HUw & Weighted Hyndman-Ullah model\\
+		MAE & Mean absolute error\\
+		MAPE & Mean absolute percentage error\\
+		MinGEV & Minimal Generalized Extreme-Value model\\
+		MLE & Maximum likelihood estimator\\
+		OLS & Ordinary least-squares\\
+		PI & Prediction intervals\\
+		RMSE & Root mean square error\\
+		RWD & Random walk with drift model\\
+		SSE & Sum of Smooth Exponentials model\\
+		STAD & Segmented Transformation Age-at-death Distributions model\\
+		SVD & Singular-value decomposition\\
+		VAR & Vector autoregressive model\\
+	\end{tabular}
+\end{table}
+\cleardoublepage
+
+
+\end{document}
